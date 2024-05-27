@@ -1,0 +1,72 @@
+
+Table customers {
+  id integer pk 
+  name varchar 
+  email varchar unique
+  address text
+  is_active boolean
+  created_at timestamp 
+  updated_at timestamp
+  deleted_at timestamp
+  reference varchar unique
+}
+
+Table regions{
+  id integer pk 
+  name varchar unique
+  is_active boolean
+  created_at timestamp 
+  updated_at timestamp
+  deleted_at timestamp
+}
+
+Table categories {
+  id integer pk 
+  name varchar unique 
+  is_active boolean
+  created_at timestamp 
+  updated_at timestamp
+  deleted_at timestamp
+}
+
+Table payment_methods {
+  id integer pk 
+  name varchar unique 
+  is_active boolean
+  created_at timestamp 
+  updated_at timestamp
+  deleted_at timestamp
+}
+
+
+
+Table products {
+  id integer pk
+  name varchar
+  unit_price float 
+  category_id integer [ref:- categories.id]
+  is_active boolean
+  created_at timestamp 
+  updated_at timestamp
+  deleted_at timestamp
+  reference varchar unique
+}
+
+
+Table orders {
+  id integer pk 
+  product_id integer [ref:- products.id]
+  customer_id integer [ref:- customers.id]
+  payment_method interger [ref:- payment_methods.id]
+  date_of_sale date 
+  quantity integer
+  discount float 
+  shipping_cost float
+  is_active boolean
+  created_at timestamp 
+  updated_at timestamp
+  deleted_at timestamp
+  reference varchar unique
+  meta json 
+}
+
